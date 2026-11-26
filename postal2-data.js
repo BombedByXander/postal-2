@@ -149,6 +149,7 @@
         progress(info, index, bytes.length, 'verify');
         if (!await validPart(bytes, part)) throw new Error('checksum mismatch');
         if (cache !== 'no-store') await storePart(part, bytes);
+        progress(info, index, bytes.length, 'ready');
         return bytes;
       } catch (error) {
         if (attempt === 2 || error.status === 404 || error.status === 410)
